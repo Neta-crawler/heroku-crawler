@@ -44,9 +44,9 @@ public final class HerokuEnvs {
 		String url = System.getenv("DATABASE_URL");
 		boolean isDev = StringUtils.isEmpty(url);
 
-		if (isDev) {
+//		if (isDev) {
 			url = "postgres://lauqqwjiphiiaa:e8CqsPgdjsR6FTTHz94-4j_SRi@ec2-107-20-244-236.compute-1.amazonaws.com:5432/det7goevo17t6b";
-		}
+//		}
 
 		try {
 			final URI dbUri = new URI(url);
