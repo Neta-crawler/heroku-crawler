@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.List;
 
 import neta.crawler.process.logic.AgohigeCrawler;
+import neta.crawler.process.logic.VowtvCrawler;
 
 /**
  * クローラーの一覧。
@@ -13,8 +14,9 @@ import neta.crawler.process.logic.AgohigeCrawler;
  *
  */
 public enum Crawlers {
-	AGOHIGE(new AgohigeCrawler());
-
+	AGOHIGE(new AgohigeCrawler()),
+	VOWTV(new VowtvCrawler());
+	
 	private final Crawler crawler;
 
 	private Crawlers(Crawler crawler) {
