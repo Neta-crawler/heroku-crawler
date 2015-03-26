@@ -21,6 +21,7 @@ import org.apache.commons.dbutils.DbUtils;
 public final class ArticleDao {
 
 	private static final String INS = "INSERT INTO articles (url, title, date, html_body, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?)";
+	private static final String UPD = "UPDATE articles set html_body = ? where id = ?";
 	private static final String SEL_ALL = "SELECT * FROM articles ORDER BY id DESC";
 	private static final String SEL_BY_URL = "SELECT * FROM articles WHERE url = ?";
 
@@ -102,6 +103,25 @@ public final class ArticleDao {
 			} else {
 				return null;
 			}
+
+		} catch (SQLException e) {
+			throw new IllegalStateException(e);
+		} finally {
+			DbUtils.closeQuietly(rs);
+			DbUtils.closeQuietly(ps);
+		}
+	}
+	
+	public void updateHtmlBody(long id, String htmlBody) {
+		ResultSet rs = null;
+		PreparedStatement ps = null;
+		try {
+			ps = ConnectionManager.getConnection().prepareStatement(UPD);
+			int i = 0;
+			ps.setString(++i, htmlBody);
+			ps.setLong(++i, id);
+			
+			ps.executeUpdate();
 
 		} catch (SQLException e) {
 			throw new IllegalStateException(e);

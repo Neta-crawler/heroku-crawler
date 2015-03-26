@@ -6,6 +6,7 @@ import java.util.List;
 
 import neta.crawler.process.Crawler;
 import neta.crawler.process.dto.Article;
+import neta.crawler.process.logic.common.JsoupUtils;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -42,11 +43,11 @@ public final class AgohigeCrawler implements Crawler {
 
 	private Article collectSinglePage(String url) throws IOException {
 		logger.trace("URL = {}", url);
-		final Document doc = Jsoup.connect(url).get();
-
+		final Document doc = JsoupUtils.formatDocument(Jsoup.connect(url).get());
+		
 		final Element articleHeader = doc.getElementsByClass("article-header").first();
 		final Element articleBody = doc.getElementsByClass("article-body").first();
-
+		
 		doc.body().children().remove();
 		doc.body().appendChild(articleHeader).appendChild(articleBody);
 
