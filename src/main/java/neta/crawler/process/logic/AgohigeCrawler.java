@@ -6,6 +6,7 @@ import java.util.List;
 
 import neta.crawler.process.Crawler;
 import neta.crawler.process.dto.Article;
+import neta.crawler.process.dto.enumelate.Category;
 import neta.crawler.process.logic.common.JsoupUtils;
 
 import org.jsoup.Jsoup;
@@ -24,6 +25,7 @@ public final class AgohigeCrawler implements Crawler {
 	private static final Logger logger = LoggerFactory.getLogger(AgohigeCrawler.class);
 
 	private static final String URL = "http://blog.livedoor.jp/christmas1224/";
+	private static final Category category = Category.FUNNY;
 
 	@Override
 	public List<Article> collect() throws IOException {
@@ -58,6 +60,7 @@ public final class AgohigeCrawler implements Crawler {
 		a.title = articleHeader.select(".article-title").first().children().first().text();
 		a.date = new java.util.Date();
 		a.htmlBody = doc.html();
+		a.category = category.getName();
 
 		return a;
 	}

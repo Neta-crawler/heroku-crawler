@@ -23,27 +23,7 @@ public class WorkTezt {
 		new VowtvCrawler().collect();
 		new AgohigeCrawler().collect();
 	}
-	
-	@Test
-	public void test2() throws Exception{		
-		ConnectionManager.prepareDataSource();
-		List<Article> articles = dao.selectAll();
 		
-		for (Article a : articles){
-			final Document doc = Jsoup.connect(a.url).get();
-			
-			String htmlBody = removeScriptTag(doc.html());
-			System.out.println(htmlBody);
-			dao.updateHtmlBody(a.id, htmlBody);
-		}
-		ConnectionManager.commitAndClose();
-	}
-	private String removeScriptTag(String doc){
-		final Document d = Jsoup.parse(doc);
-		
-		return d.html();
-	}
-	
 	@Test
 	public void replace() throws Exception{
 		ConnectionManager.prepareDataSource();

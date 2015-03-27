@@ -20,4 +20,5 @@ public interface Crawler {
 	 * @throws IOException
 	 */
 	List<Article> collect() throws IOException;
+	
 }

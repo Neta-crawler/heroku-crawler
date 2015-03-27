@@ -6,6 +6,7 @@ import java.util.List;
 
 import neta.crawler.process.Crawler;
 import neta.crawler.process.dto.Article;
+import neta.crawler.process.dto.enumelate.Category;
 import neta.crawler.process.logic.common.JsoupUtils;
 
 import org.jsoup.Jsoup;
@@ -17,8 +18,10 @@ import org.slf4j.LoggerFactory;
 
 public class VowtvCrawler implements Crawler {
 	private static final Logger logger = LoggerFactory.getLogger(VowtvCrawler.class);
+	
 	private static final String URL = "http://vowtv.jp/";
-
+	private static final Category category = Category.FUNNY;
+	
 	@Override
     public List<Article> collect() throws IOException {
 	    final Document doc = Jsoup.connect(URL).get();	    
@@ -51,8 +54,8 @@ public class VowtvCrawler implements Crawler {
 		a.title = articleHeader.select(".entry-title").text();
 		a.date = new java.util.Date();
 		a.htmlBody = doc.html();
-
+		a.category = category.getName();
+		
 		return a;
-	}
-	
+	}	
 }
