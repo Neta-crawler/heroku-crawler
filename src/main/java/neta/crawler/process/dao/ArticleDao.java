@@ -20,8 +20,8 @@ import org.apache.commons.dbutils.DbUtils;
  */
 public final class ArticleDao {
 
-	private static final String INS = "INSERT INTO articles (url, title, date, html_body, created_at, updated_at, category) VALUES (?, ?, ?, ?, ?, ?, ?)";
-	private static final String UPD = "UPDATE articles set url=?, title=?, html_body=?, updated_at=?, category=? where id = ?";
+	private static final String INS = "INSERT INTO articles (url, title, date, html_body, created_at, updated_at, category, page_image) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+	private static final String UPD = "UPDATE articles set url=?, title=?, html_body=?, updated_at=?, category=?, page_image=?  where id = ?";
 	private static final String UPD_BODY = "UPDATE articles set html_body = ? where id = ?";
 	private static final String SEL_ALL = "SELECT * FROM articles ORDER BY id DESC";
 	private static final String SEL_BY_URL = "SELECT * FROM articles WHERE url = ?";
@@ -45,6 +45,7 @@ public final class ArticleDao {
 			ps.setTimestamp(++i, new java.sql.Timestamp(System.currentTimeMillis()));
 			ps.setTimestamp(++i, new java.sql.Timestamp(System.currentTimeMillis()));
 			ps.setString(++i, a.category);
+			ps.setString(++i, a.pageImage);
 
 			ps.executeUpdate();
 
@@ -148,6 +149,7 @@ public final class ArticleDao {
 			ps.setString(++i, a.htmlBody);
 			ps.setTimestamp(++i, new java.sql.Timestamp(System.currentTimeMillis()));
 			ps.setString(++i, a.category);
+			ps.setString(++i, a.pageImage);
 			ps.setLong(++i, a.id);
 			
 			ps.executeUpdate();
@@ -169,6 +171,9 @@ public final class ArticleDao {
 		a.htmlBody = rs.getString(5);
 		a.created_at = new java.util.Date(rs.getTimestamp(6).getTime());
 		a.updated_at = new java.util.Date(rs.getTimestamp(7).getTime());
+		a.category  = rs.getString("category");
+		a.pageImage = rs.getString("page_image");
+		
 		return a;
 	}
 }

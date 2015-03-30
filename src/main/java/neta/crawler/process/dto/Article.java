@@ -13,12 +13,12 @@ public final class Article {
 	public Date created_at = new Date(0);
 	public Date updated_at = new Date(0);
 	public String category = StringUtils.EMPTY;
+	public String pageImage = StringUtils.EMPTY;
 	
 	@Override
     public String toString() {
 	    return "Article [id=" + id + ", url=" + url + ", title=" + title + ", date=" + date + ", htmlBody=" + htmlBody + ", created_at=" + created_at
-	            + ", updated_at=" + updated_at + ", category=" + category + "]";
+	            + ", updated_at=" + updated_at + ", category=" + category + ", pageImage=" + pageImage + "]";
     }
-
 	
 }

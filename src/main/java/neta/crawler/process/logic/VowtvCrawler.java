@@ -55,6 +55,12 @@ public class VowtvCrawler implements Crawler {
 		a.date = new java.util.Date();
 		a.htmlBody = doc.html();
 		a.category = category.getName();
+		try{
+			a.pageImage = doc.getElementsByTag("img").first().attr("src");
+		}catch (Exception e){
+			//握りつぶす
+			a.pageImage = "";
+		}
 		
 		return a;
 	}	
