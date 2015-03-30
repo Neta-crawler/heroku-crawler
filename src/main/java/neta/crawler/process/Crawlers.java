@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.List;
 
 import neta.crawler.process.logic.AgohigeCrawler;
+import neta.crawler.process.logic.SpotlightCrawler;
 import neta.crawler.process.logic.VowtvCrawler;
 
 /**
@@ -15,7 +16,8 @@ import neta.crawler.process.logic.VowtvCrawler;
  */
 public enum Crawlers {
 	AGOHIGE(new AgohigeCrawler()),
-	VOWTV(new VowtvCrawler());
+	VOWTV(new VowtvCrawler()),
+	SPOTLIGHT(new SpotlightCrawler());
 	
 	private final Crawler crawler;
 

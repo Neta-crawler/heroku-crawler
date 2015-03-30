@@ -44,6 +44,7 @@ public final class ArticleDao {
 			ps.setString(++i, a.htmlBody);
 			ps.setTimestamp(++i, new java.sql.Timestamp(System.currentTimeMillis()));
 			ps.setTimestamp(++i, new java.sql.Timestamp(System.currentTimeMillis()));
+			ps.setString(++i, a.category);
 
 			ps.executeUpdate();
 

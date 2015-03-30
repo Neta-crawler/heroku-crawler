@@ -13,6 +13,7 @@ public class JsoupUtils {
 		doc.getElementsByTag("script").remove();
 		doc.getElementsByTag("link").attr("rel", "stylesheet").remove();
 		doc.getElementsByTag("style").remove();
+		doc.getElementsByTag("img").addClass("img-responsive");
 		return doc;
 	}
 }

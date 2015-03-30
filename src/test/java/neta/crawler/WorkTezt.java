@@ -6,8 +6,7 @@ import java.util.List;
 import neta.crawler.base.ConnectionManager;
 import neta.crawler.process.dao.ArticleDao;
 import neta.crawler.process.dto.Article;
-import neta.crawler.process.logic.AgohigeCrawler;
-import neta.crawler.process.logic.VowtvCrawler;
+import neta.crawler.process.logic.SpotlightCrawler;
 import neta.crawler.process.logic.common.JsoupUtils;
 
 import org.jsoup.Jsoup;
@@ -20,8 +19,9 @@ public class WorkTezt {
 	
 	@Test
 	public void test() throws Exception{
-		new VowtvCrawler().collect();
-		new AgohigeCrawler().collect();
+//		new VowtvCrawler().collect();
+//		new AgohigeCrawler().collect();
+		new SpotlightCrawler().collect(); 
 	}
 		
 	@Test
